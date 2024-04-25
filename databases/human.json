@@ -1,0 +1,24 @@
+{
+    "StartingAttributeScores": {
+      "Strength": 10,
+      "Agility": 10,
+      "Intellect": 10,
+      "Will": 10
+    },
+    "ChooseOneAttributeIncreaseByOne": "Choose one attribute and increase it by 1.",
+    "Perception": "equals your Intellect score",
+    "Defense": ["equals your Agility score", 10],
+    "Health": ["equals your Strength score", 10],
+    "HealingRate": "equals one-quarter your Health, round down",
+    "Size": 1,
+    "Speed": 10,
+    "Power": 0,
+    "Damage": 0,
+    "Insanity": 0,
+    "Corruption": 0,
+    "LanguagesAndProfessions": {
+      "Languages": ["Common Tongue"],
+      "Professions": ["You can either speak one additional language or add a random profession."]
+    }
+  }
+  
