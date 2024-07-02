@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Node</title>
+  <style>
+    /* ... your existing styles ... */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Node</h1>
+  <form id="add_node_form">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" required placeholder="Enter node name">
+    <br>
+    <label for="type">Type:</label>
+    <select name="type" id="type" required onchange="updateNodeType()">
+      <option value="">Select Type</option>
+      <option value="character">Character</option>
+      <option value="fact">Fact</option>
+      <option value="item">Item</option>
+      <option value="location">Location</option>
+    </select>
+    <br>
+
+    <div id="character_fields" class="hidden">
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" placeholder="Enter character description"></textarea>
+    </div>
+
+    <div id="fact_fields" class="hidden">
+      <label for="content">Fact Content:</label>
+      <textarea name="content" id="content" placeholder="Enter fact content"></textarea>
+    </div>
+
+    <div id="item_fields" class="hidden">
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" placeholder="Enter item description"></textarea>
+      <br>
+    </div>
+
+    <div id="location_fields" class="hidden">
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" placeholder="Enter location description"></textarea>
+    </div>
+
+    <button type="submit">Next</button>
+  </form>
+
+  <script>
+    function updateNodeType() {
+      const selectedType = document.getElementById('type').value;
+      const characterFields = document.getElementById('character_fields');
+      const factFields = document.getElementById('fact_fields');
+      const itemFields = document.getElementById('item_fields');
+      const locationFields = document.getElementById('location_fields');
+
+      // Hide all fields initially
+      characterFields.classList.add('hidden');
+      factFields.classList.add('hidden');
+      itemFields.classList.add('hidden');
+      locationFields.classList.add('hidden');
+
+      // Show specific fields based on selected type
+      if (selectedType === 'character') {
+        characterFields.classList.remove('hidden');
+      } else if (selectedType === 'fact') {
+        factFields.classList.remove('hidden');
+      } else if (selectedType === 'item') {
+        itemFields.classList.remove('hidden');
+      } else if (selectedType === 'location') {
+        locationFields.classList.remove('hidden');
+      }
+    }
+
+    // Call updateNodeType on initial page load (optional)
+    updateNodeType();
+  </script>
+</body>
+</html>
