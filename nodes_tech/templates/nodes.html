@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Visualization</title>
+    <style>
+        .node-container {
+            background-color: #272b33;
+            width: 850px;
+            height: 280px;
+            ;
+            position: absolute;
+        }
+        .html, body {
+            background-color: #272b33;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Node Visualization</h1>
+    <div class="node-container"></div>
+
+    <script>
+    function calculateAvailableSpace() {
+        const container = document.querySelector('.node-container');
+        const availableWidth = container.clientWidth;
+        const availableHeight = container.clientHeight;
+        console.log('Available space:', availableWidth, 'x', availableHeight);
+        return { width: availableWidth, height: availableHeight };
+    }
+
+    function createNodeCircles(nodes) {
+        const container = document.querySelector('.node-container');
+        const space = calculateAvailableSpace();
+        itsFirst = true;
+        if(itsFirst == false){console.log("aqui foi")}
+
+
+        nodes.forEach(node => {
+            const circle = document.createElement('div');
+            circle.className = 'node-circle';
+            circle.style.width = node.size * 20 + 'px';
+            //circle.style.width = '20px';
+            circle.style.height = node.size * 20 + 'px';
+            circle.style.borderRadius = '100%';
+            console.log(node)
+            circle.style.backgroundColor = getNodeColor(node.type)
+            circle.style.position = 'absolute';
+            circle.style.left = Math.random() * (space.width - 20) + 'px';
+            circle.style.top = Math.random() * (space.height - 20) + 'px';
+            itsFirst = false
+            container.appendChild(circle);
+        });
+    }
+
+    const NodeType = {
+        PLACE: "green",
+        ARTEFACT: "yellow",
+        PEOPLE: "grey",
+        LORE: "purple",
+        CONCEPT: "red"
+    };
+
+    function getNodeColor(nodeType) {
+        return NodeType[nodeType] || 'gray';
+    }
+
+
+    window.addEventListener('load', () => {
+        calculateAvailableSpace();
+        fetch('/get_nodes')
+            .then(response => response.json())
+            .then(nodes => createNodeCircles(nodes));
+    });
+    </script>
+</body>
+</html>
